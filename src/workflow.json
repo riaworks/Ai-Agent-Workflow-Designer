@@ -1,0 +1,35 @@
+{
+  "theme": {
+    "floor": "bg-[#f8fafc]",
+    "gridColor": "rgba(71, 85, 105, 0.05)",
+    "deskStyle": "modern",
+    "orchestratorColor": "bg-indigo-600"
+  },
+  "decorations": [
+    { "type": "plant", "x": 50, "y": 50 },
+    { "type": "plant", "x": 850, "y": 50 },
+    { "type": "plant", "x": 50, "y": 550 },
+    { "type": "plant", "x": 850, "y": 550 },
+    { "type": "water", "x": 450, "y": 50 },
+    { "type": "archive", "x": 250, "y": 550 },
+    { "type": "archive", "x": 650, "y": 550 }
+  ],
+  "orchestrator": {
+    "x": 450,
+    "y": 300,
+    "name": "Nexus Core"
+  },
+  "agents": [
+    { "id": "1", "name": "Alpha", "role": "Ingestion", "color": "bg-cyan-500", "home": { "x": 120, "y": 120 } },
+    { "id": "2", "name": "Beta", "role": "Processor", "color": "bg-blue-500", "home": { "x": 120, "y": 480 } },
+    { "id": "3", "name": "Gamma", "role": "Analyzer", "color": "bg-indigo-500", "home": { "x": 450, "y": 120 } },
+    { "id": "4", "name": "Delta", "role": "Synthesizer", "color": "bg-purple-500", "home": { "x": 780, "y": 120 } },
+    { "id": "5", "name": "Epsilon", "role": "Validator", "color": "bg-pink-500", "home": { "x": 780, "y": 480 } }
+  ],
+  "sequence": [
+    { "from": "1", "to": "2", "log": "Alpha: Packet captured. Routing to Beta for processing." },
+    { "from": "2", "to": "3", "log": "Beta: Normalization complete. Gamma, start deep analysis." },
+    { "from": "3", "to": "4", "log": "Gamma: Patterns identified. Delta, begin synthesis." },
+    { "from": "4", "to": "5", "log": "Delta: Draft ready. Epsilon, initiate final validation." }
+  ]
+}
