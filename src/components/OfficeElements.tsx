@@ -8,7 +8,7 @@ interface AgentProps {
   id: string;
   name: string;
   role: string;
-  position: { x: number; y: number };
+  position: { x: number | string; y: number | string };
   isWalking: boolean;
   hasWork: boolean;
   color: string;
@@ -193,7 +193,7 @@ export function OfficeAgent({ name, role, position, isWalking, hasWork, color, t
   );
 }
 
-export function Desk({ x, y, label, themeType = 'office' }: { x: number; y: number; label: string; themeType?: ThemeType; key?: any }) {
+export function Desk({ x, y, label, themeType = 'office' }: { x: number | string; y: number | string; label: string; themeType?: ThemeType; key?: any }) {
   const isBlocky = themeType === 'blocky';
   
   return (
@@ -230,7 +230,7 @@ export function Desk({ x, y, label, themeType = 'office' }: { x: number; y: numb
   );
 }
 
-export function Decoration({ type, x, y, themeType = 'office' }: { type: 'plant' | 'water' | 'archive'; x: number; y: number; themeType?: ThemeType; key?: any }) {
+export function Decoration({ type, x, y, themeType = 'office' }: { type: 'plant' | 'water' | 'archive'; x: number | string; y: number | string; themeType?: ThemeType; key?: any }) {
   const isBlocky = themeType === 'blocky';
 
   return (
@@ -266,7 +266,7 @@ export function Decoration({ type, x, y, themeType = 'office' }: { type: 'plant'
   );
 }
 
-export function OrchestratorTable({ x, y, name, color, themeType = 'office' }: { x: number; y: number; name: string; color?: string; themeType?: ThemeType }) {
+export function OrchestratorTable({ x, y, name, color, themeType = 'office' }: { x: number | string; y: number | string; name: string; color?: string; themeType?: ThemeType }) {
   const isBlocky = themeType === 'blocky';
 
   if (isBlocky) {
@@ -385,11 +385,11 @@ export function OrchestratorTable({ x, y, name, color, themeType = 'office' }: {
 export function PixelBalloon({ x, y, color, onComplete }: { x: number; y: number; color: string; onComplete?: () => void; key?: any }) {
   return (
     <motion.div
-      initial={{ y: y, opacity: 0, x: x, scale: 0.5 }}
+      initial={{ top: `${y}%`, left: `${x}%`, opacity: 0, scale: 0.5 }}
       animate={{ 
-        y: y - 600, 
+        top: `${y - 40}%`, 
         opacity: [0, 1, 1, 0],
-        x: [x, x + 40, x - 40, x + 20],
+        left: [`${x}%`, `${x + 2}%`, `${x - 2}%`, `${x + 1}%`],
         scale: 1.2
       }}
       transition={{ 
@@ -397,8 +397,7 @@ export function PixelBalloon({ x, y, color, onComplete }: { x: number; y: number
         ease: "easeOut"
       }}
       onAnimationComplete={onComplete}
-      className="absolute pointer-events-none z-[100] -translate-x-1/2"
-      style={{ left: 0, top: 0 }}
+      className="absolute pointer-events-none z-[100] -translate-x-1/2 -translate-y-1/2"
     >
       <div className="flex flex-col items-center">
         {/* Square Balloon */}
